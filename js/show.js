@@ -12,25 +12,35 @@ if (location.hash) {
 $('button#search').click( function() {
   var word = $('input#searchbox').val().trim();
   search(word);
-  $('button[object]').click(bind);
 });
 
 $('input#searchbox').keypress( function(event) {
   if (event.which == 13) {
     var word = $('input#searchbox').val().trim();
-    console.log(word);
     search(word);
-    $('button[object]').click(bind);
   }
 });
 
 $(function () {
+  $('button#btn-pronunciation').click(function () {
+    $('#pronunciation').trigger('pause');
+    $('#pronunciation').prop('currentTime', 0);
+    $('#pronunciation').trigger('play');
+  });
+  $("#pronunciation").bind("load",function(){
+        $("#btn-pronunciation").removeAttr('disabled');
+    });
+  $('#pronunciation').on('error', handleMediaError);
   search('book');
-  $('button[object]').click(bind);
+
 });
 
 function search(word) {
-    OxfordSearch(word);
+  OxfordSearch(word);
+  $('#pronunciation').attr('src', 'http://ssl.gstatic.com/dictionary/static/sounds/de/0/' + word + '.mp3');
+  $('#pronunciation').trigger('load');
+
+  $('button[object]').click(bind);
 }
 
 $('Y[O]').click(bind);
@@ -38,7 +48,7 @@ $('Y[O]').click(bind);
 function bind() {
   search($(this).attr('object'));
   $("body, html").animate({
-      scrollTop: $('#' + $(this).attr('source') + '-' + $(this).attr('object') + '-1').offset().top
+      scrollTop: $('#' + $(this).attr('source') + '-' + $(this).attr('object') + '-' + $(this).attr('entry')).offset().top
     }, 600);
   $('button[object]').click(bind);
 }
@@ -164,4 +174,23 @@ function removeWierdChar(str) {
     str = str.replace(re, '');
   }
   return str;
+}
+
+function handleMediaError(e) {
+  e.preventDefault();
+  e.stopPropagation();
+    /*switch (e.target.error.code) {
+        case e.target.error.MEDIA_ERR_ABORTED:
+            alert('You aborted the media playback.'); break;
+        case e.target.error.MEDIA_ERR_NETWORK:
+            alert('A network error caused the media download to fail.'); break;
+        case e.target.error.MEDIA_ERR_DECODE:
+            alert('The media playback was aborted due to a corruption problem or because the media used features your browser did not support.'); break;
+        case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+            alert('The media could not be loaded, either because the server or network failed or because the format is not supported.'); break;
+        default:
+            alert('An unknown media error occurred.');
+    }*/
+  $('#btn-pronunciation').attr('disabled', 'disabled');
+
 }

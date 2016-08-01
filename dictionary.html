@@ -208,21 +208,30 @@
         </div><!-- /.dictionary-main -->
 
         <div class="col-md-3 col-md-offset-1 col-sm-12 dictionary-sidebar">
-          <div class="sidebar-module sidebar-module-inset">
-            <h4>About</h4>
-            <p>Driven by the Harvey Lu's mania about good-looking dictionary applications and Vera Wei's recommendation and support.</p>
-          </div>
+
           <div class="sidebar-module">
-            <h4>Something</h4>
-            <ol class="list-unstyled">
-              <li>Intentionally left blank.</li>
-            </ol>
+            <div class="btn-group-vertical" role="group" aria-label="...">
+            <button type="button" class="btn btn-primary" id="btn-pronunciation">
+              <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> &nbsp;Pronunciation
+              <audio id="pronunciation" src="" preload="none">
+                Your browser does not support the HTML5 audio element.
+              </audio>
+            </button>
+
+            <button type="button" class="btn btn-primary">
+              Blank
+            </button>
+            </div>
           </div>
           <div class="sidebar-module">
             <h4>Elsewhere</h4>
             <ol class="list-unstyled">
               <li>Intentionally left blank.</li>
             </ol>
+          </div>
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p>Driven by the Harvey Lu's mania about good-looking dictionary applications and Vera Wei's recommendation and support.</p>
           </div>
         </div><!-- /.dictionary-sidebar -->
 
@@ -246,7 +255,9 @@
     <script src="./js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="./js/ie10-viewport-bug-workaround.js"></script>
-    <script src="Oxford.js"></script>
+
+    <!-- Dictionaries -->
+    <script src="./dict/Oxford.js"></script>
     <script src="./js/show.js"></script>
 
 
