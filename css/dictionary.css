@@ -32,6 +32,11 @@ h6, .h6 {
 }
 
 
+.panel h3 {
+  margin-bottom: 0;
+}
+
+
 /*
  * Masthead for nav
  */
@@ -150,6 +155,7 @@ h6, .h6 {
 .sidebar-module {
   padding: 15px;
   margin: 0 -15px 15px;
+  max-width: 242.5px;
 }
 .sidebar-module-inset {
   padding: 15px;
